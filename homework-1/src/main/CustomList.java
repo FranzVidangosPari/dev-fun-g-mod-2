@@ -1,10 +1,10 @@
-public class CustomList implements IList {
-    Node head;
-    Node tail;
+public class CustomList<T> implements IList<T> {
+    Node<T> head;
+    Node<T> tail;
 
     @Override
-    public void add(int value) {
-        Node newNode = new Node(value);
+    public void add(T value) {
+        Node<T> newNode = new Node(value);
         if(head == null){
             head = newNode;
             tail = newNode;
@@ -15,9 +15,13 @@ public class CustomList implements IList {
         }
     }
 
+    /**
+     * this method add the element in first place.
+     * @param value is the vakue to add
+     */
     @Override
-    public void addFirst(int value) {
-        Node newNode = new Node(value);
+    public void addFirst(T value) {
+        Node<T> newNode=new Node(value);
         newNode.next = head;
         head = newNode;
         if (newNode.next == null){
@@ -26,8 +30,8 @@ public class CustomList implements IList {
     }
 
     @Override
-    public void addLast(int value) {
-        Node newNode = new Node(value);
+    public void addLast(T value) {
+        Node<T> newNode=new Node(value);
         if(tail == null){
             head = newNode;
         }
@@ -58,8 +62,8 @@ public class CustomList implements IList {
 
 
     @Override
-    public void addIndex(int index,int element) {
-        Node newNode = new Node(element);
+    public void addIndex(int index,T element) {
+        Node<T> newNode=new Node(element);
         Node current = head;
         for(int i = 0; i < index - 1 ; i++){
             current = current.next;
@@ -101,7 +105,8 @@ public class CustomList implements IList {
         }
     }
 
-    public boolean contains(int value){
+
+    public boolean contains(T value){
         Node current = head;
         while(current != null){
             if(current.value == value){
@@ -112,12 +117,17 @@ public class CustomList implements IList {
         return false;
     }
 
-    public int getByIndex(int index){
+    /**
+     *
+     * @param index
+     * @return T is the value to return
+     */
+    public T getByIndex(int index){
         Node current = head;
         for(int i = 0; i < index ; i++){
             current = current.next;
         }
-        return current.value;
+        return (T) current.value;
     }
 
 }
