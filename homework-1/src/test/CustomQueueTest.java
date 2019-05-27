@@ -13,9 +13,18 @@ public class CustomQueueTest {
 
     @Test
     public void peek() {
+        CustomQueue<String> newQueueList = new CustomQueue<>();
+        newQueueList.add("5");
+        newQueueList.add("11");
+        newQueueList.add("34");
+        assertEquals("5", newQueueList.peek());
     }
 
     @Test
     public void remove() {
+        CustomQueue<String> newQueueList = new CustomQueue<>();
+        newQueueList.add("5");
+        newQueueList.remove();
+        assertEquals(true, newQueueList.emptyQueue());
     }
 }
