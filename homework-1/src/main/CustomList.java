@@ -16,7 +16,7 @@ public class CustomList<T> implements IList<T> {
     }
 
     /**
-     * this method add the element in first place.
+     * This method add the element in first place.
      * @param value is the vakue to add
      */
     @Override
@@ -130,4 +130,10 @@ public class CustomList<T> implements IList<T> {
         return (T) current.value;
     }
 
+    public boolean emptyList(){
+        if(head == null && tail == null){
+            return true;
+        }
+        return false;
+    }
 }
