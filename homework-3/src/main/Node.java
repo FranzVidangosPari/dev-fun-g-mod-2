@@ -20,15 +20,4 @@ public class Node<T> {
         return this.heightRight;
     }
 
-    public void setHeightLeft(){
-        if (this.left != null){
-            this.heightLeft = this.getHeightLeft() + 1;
-        }
-    }
-
-    public void setHeightRight(){
-        if (this.right != null){
-            this.heightRight = this.getHeightRight() + 1;
-        }
-    }
 }

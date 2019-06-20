@@ -4,7 +4,6 @@ public class main {
         newCustomTree.add("25");
         newCustomTree.add("50");
         newCustomTree.add("75");
-        newCustomTree.heightTest();
         newCustomTree.print();
 
     }

@@ -4,6 +4,7 @@ public class CustomTree<T> {
         public void add(T value){
             Node<T> newNode = new Node<>(value);
             this.addNode(newNode, this.root);
+            this.height(this.root);
         }
 
         private void addNode(Node newNode, Node customRoot) {
@@ -49,25 +50,69 @@ public class CustomTree<T> {
         this.balanceFactor(this.root);
     }
 
-    public void balanceFactor(Node customRoot){
+    public void balanceFactor(Node customRoot) {
         int balance = customRoot.getHeightRight() - customRoot.getHeightLeft();
-        if (balance == 1 || balance == 0 || balance == -1 ){
-            System.out.println("balance");
-        }
-        else{System.out.println("no balance");
-        //giro izquierda if balance es positivo
-            if (customRoot.right.left == null){
-                Node<T> newNode = new Node(customRoot.value);
-                //newNode.right = customRoot.right
-                //newNode.left = customRoot.left
-                customRoot.right.left = newNode;
-                this.height(customRoot.right);
-                // si customRoot.right.left != null moverlo al lado derecho
-                // eliminar customRoot, caso especial verificar si es root
-            }
+        if (balance == 1 || balance == 0 || balance == -1) {
+            System.out.println(" ");
+        } else {
+            if (balance >= 2){
+                System.out.println("rotar izquierda");
+                //this.rotateLeft(customRoot);
+                customRoot = this.rotateLeft(customRoot);
 
+            }
+            else{System.out.println("rotar derecha");
+                //this.rotateRight(customRoot);
+                customRoot = this.rotateRight(customRoot);
+            }
         }
     }
+
+    public Node rotateLeft(Node customRoot){
+        Node aux = customRoot.right;
+        customRoot.right = aux.left;
+        aux.left = customRoot;
+        this.cleanHeight(aux);
+        this.height(aux);
+        System.out.println(" ");
+        this.binaryTree(aux);
+        System.out.println(" ");
+        return aux;
+        }
+
+
+    public Node rotateRight(Node customRoot){
+        Node aux = customRoot.left;
+        customRoot.left = aux.right;
+        aux.right = customRoot;
+        //this.height(aux);
+        System.out.println(" ");
+        this.binaryTree(aux);
+        System.out.println(" ");
+        return aux;
+    }
+
+    public void cleanHeight(Node customRoot){
+        customRoot.left.heightLeft = 0;
+        customRoot.left.heightRight = 0;
+        customRoot.right.heightLeft = 0;
+        customRoot.right.heightRight = 0;
+        customRoot.heightRight = 0;
+        customRoot.heightLeft = 0;
+    }
+
+            //if (customRoot.right.left == null){
+            //    Node<T> newNode = new Node(customRoot.value);
+                //newNode.right = customRoot.right
+                //newNode.left = customRoot.left
+            //    customRoot.right.left = newNode;
+            //    this.height(customRoot.right);
+                // si customRoot.right.left != null moverlo al lado derecho
+                // eliminar customRoot, caso especial verificar si es root
+           // }
+
+       // }
+
 
 
         public void print(){
